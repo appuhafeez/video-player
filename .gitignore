@@ -1,0 +1,15 @@
+VideoManager/target/
+VideoManager/.settings/
+!VideoManager/.mvn/wrapper/maven-wrapper.jar
+HELP.md
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+VideoManager/.apt_generated
+VideoManager/.classpath
+VideoManager/.factorypath
+VideoManager/.project
+VideoManager/.settings
+VideoManager/.springBeans
+VideoManager/.sts4-cache
