@@ -22,7 +22,6 @@ public class RegistrationController {
 	public void registerUser(@RequestParam("avatar") MultipartFile avatar, @RequestParam("email") String email,
 			@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("password") String password, @RequestParam("username") String userName) throws IOException {
 		
-		System.out.println("----test1---");
 		registrationService.reigsterUser(avatar , email , password , userName, firstName , lastName);
 	}
 	
