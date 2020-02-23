@@ -52,6 +52,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 			throw new FileNotFoundException("Could not store file " + avatar + ". Please try again!");
 		}
 		tempUser.setUser(accountUser);
+		accountUser.setUserId(tempUser);
 		Users registerdUser = registrationRepo.save(tempUser);
 		
 		AuthoriteId tempAuthoriteId = new AuthoriteId(registerdUser.getUserName(),"ROLE_USER");
