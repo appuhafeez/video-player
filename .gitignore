@@ -13,3 +13,19 @@ VideoManager/.project
 VideoManager/.settings
 VideoManager/.springBeans
 VideoManager/.sts4-cache
+
+
+HELP.md
+user-management/target/
+!user-management/.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+user-management/bin
+### STS ###
+user-management/.apt_generated
+user-management/.classpath
+user-management/.factorypath
+user-management/.project
+user-management/.settings
+user-management/.springBeans
+user-management/.sts4-cache
