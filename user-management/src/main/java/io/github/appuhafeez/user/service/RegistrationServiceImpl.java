@@ -37,8 +37,6 @@ public class RegistrationServiceImpl implements RegistrationService{
 		tempUser.setPassword("{bcrypt}".concat(passwordEncoder.encode(password)));
 		tempUser.setUserName(userName);
 		
-		//Users registerdUser = registrationRepo.save(tempUser);
-		
 		AccountUser accountUser = new AccountUser();
 		accountUser.setEmail(email);
 		accountUser.setFirstName(firstName);
