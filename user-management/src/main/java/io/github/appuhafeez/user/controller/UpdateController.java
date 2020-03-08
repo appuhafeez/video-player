@@ -21,4 +21,8 @@ public class UpdateController {
 		updateService.updateEmail(userId,email);
 	}
 	
+	@PutMapping("/password/{userId}")
+	public void updatePassword(@PathVariable int userId, @RequestParam("OldPassword") String oldPassword, @RequestParam("NewPassword") String newPassword, @RequestParam("ConfirmPassword") String confirmPassword) throws Exception {
+		updateService.updatePassword(userId, oldPassword, newPassword, confirmPassword);
+	}
 }
