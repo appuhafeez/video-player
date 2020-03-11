@@ -8,6 +8,7 @@ import javax.validation.ConstraintViolationException;
 import org.apache.catalina.session.FileStore;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -60,7 +61,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 		
 		try {
 			registrationRepo.save(tempUser);
-		}catch (Exception e) {
+		}catch (DataIntegrityViolationException e) {
 			throw new ExpectationFailedException(e);
 		}
 		
