@@ -3,12 +3,16 @@ package io.github.appuhafeez.user.service;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.validation.ConstraintViolationException;
+
 import org.apache.catalina.session.FileStore;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import io.github.appuhafeez.user.customexception.ExpectationFailedException;
 import io.github.appuhafeez.user.entity.AccountUser;
 import io.github.appuhafeez.user.entity.AuthoriteId;
 import io.github.appuhafeez.user.entity.Authorities;
@@ -43,7 +47,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 		accountUser.setLastName(lastName);
 		
 		try {
-			accountUser.setData(avatar.getBytes());
+			accountUser.setAvatar(avatar.getBytes());
 			accountUser.setContentType(avatar.getContentType());
 			accountUser.setFileName(avatar.getName());
 		} catch (IOException e) {
@@ -51,7 +55,14 @@ public class RegistrationServiceImpl implements RegistrationService{
 		}
 		tempUser.setUser(accountUser);
 		accountUser.setUserId(tempUser);
-		Users registerdUser = registrationRepo.save(tempUser);
+		
+		Users registerdUser = new Users();
+		
+		try {
+			registrationRepo.save(tempUser);
+		}catch (Exception e) {
+			throw new ExpectationFailedException(e);
+		}
 		
 		AuthoriteId tempAuthoriteId = new AuthoriteId(registerdUser.getUserName(),"ROLE_USER");
 		tempAuthorities.setAuthoriteId(tempAuthoriteId);
