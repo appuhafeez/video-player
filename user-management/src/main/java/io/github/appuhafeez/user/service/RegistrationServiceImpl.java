@@ -3,10 +3,6 @@ package io.github.appuhafeez.user.service;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import javax.validation.ConstraintViolationException;
-
-import org.apache.catalina.session.FileStore;
-import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
