@@ -45,7 +45,7 @@ public class AccountUser {
 	private String lastName;
 	
 	@Lob
-	private byte[] data;
+	private byte[] avatar;
 	
 	private String fileName;
 	
