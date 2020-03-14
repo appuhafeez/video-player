@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import io.github.appuhafeez.user.bo.CustomErrorResponse;
 import io.github.appuhafeez.user.customexception.BadRequestException;
 import io.github.appuhafeez.user.customexception.ExpectationFailedException;
+import io.github.appuhafeez.user.customexception.InternalErrorException;
 import io.github.appuhafeez.user.customexception.NotFoundException;
 
 @ControllerAdvice
@@ -51,5 +52,16 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 		errorResponse.setTimestamp(LocalDateTime.now());
 		
 		return new ResponseEntity<>(errorResponse, HttpStatus.EXPECTATION_FAILED);
+	}
+	
+	@ExceptionHandler(InternalErrorException.class)
+	public ResponseEntity<CustomErrorResponse> springHandleInternalError(Exception ex, WebRequest request) {
+		
+		CustomErrorResponse errorResponse = new CustomErrorResponse();
+		errorResponse.setErrorMessage(ex.getMessage());
+		errorResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+		errorResponse.setTimestamp(LocalDateTime.now());
+		
+		return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

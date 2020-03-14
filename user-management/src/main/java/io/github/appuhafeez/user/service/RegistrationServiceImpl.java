@@ -3,13 +3,16 @@ package io.github.appuhafeez.user.service;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.github.appuhafeez.user.customexception.ExpectationFailedException;
+import io.github.appuhafeez.user.customexception.InternalErrorException;
 import io.github.appuhafeez.user.entity.AccountUser;
 import io.github.appuhafeez.user.entity.AuthoriteId;
 import io.github.appuhafeez.user.entity.Authorities;
@@ -31,6 +34,7 @@ public class RegistrationServiceImpl implements RegistrationService{
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+	@Transactional
 	public void reigsterUser(MultipartFile avatar,String email,String password,String userName, String firstName, String lastName) throws FileNotFoundException {
 		
 		Users tempUser = new Users();
@@ -58,14 +62,13 @@ public class RegistrationServiceImpl implements RegistrationService{
 		Users registerdUser = new Users();
 		
 		try {
-			registrationRepo.save(tempUser);
+			registerdUser = registrationRepo.save(tempUser);
 		}catch (DataIntegrityViolationException e) {
-			throw new ExpectationFailedException(e);
+			throw new ExpectationFailedException("user name already exist, please try with different username");
 		}
 		
 		AuthoriteId tempAuthoriteId = new AuthoriteId(registerdUser.getUserName(),"ROLE_USER");
 		tempAuthorities.setAuthoriteId(tempAuthoriteId);
-		
 		authoritiesRepo.save(tempAuthorities);
 	}
 

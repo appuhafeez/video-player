@@ -1,13 +1,14 @@
 package io.github.appuhafeez.user.customexception;
 
-public class ExpectationFailedException extends RuntimeException {
+public class InternalErrorException extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public ExpectationFailedException(String s) {
+	
+	public InternalErrorException(String s) {
 		super(s);
 	}
+
 }
