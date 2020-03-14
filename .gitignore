@@ -18,8 +18,6 @@ VideoManager/.sts4-cache
 HELP.md
 user-management/target/
 !user-management/.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
 user-management/bin
 ### STS ###
 user-management/.apt_generated
@@ -29,3 +27,16 @@ user-management/.project
 user-management/.settings
 user-management/.springBeans
 user-management/.sts4-cache
+
+HELP.md
+notification-service-final/target/
+!notification-service-final/.mvn/wrapper/maven-wrapper.jar
+notification-service-final/bin
+### STS ###
+notification-service-final/.apt_generated
+notification-service-final/.classpath
+notification-service-final/.factorypath
+notification-service-final/.project
+notification-service-final/.settings
+notification-service-final/.springBeans
+notification-service-final/.sts4-cache
